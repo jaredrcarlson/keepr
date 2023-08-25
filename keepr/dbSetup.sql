@@ -46,3 +46,13 @@ CREATE TABLE IF NOT EXISTS vaultkeeps(
   FOREIGN KEY(keepId) REFERENCES keeps(id) ON DELETE CASCADE
 ) DEFAULT CHARSET UTF8;
 
+SELECT
+    k.*,
+    COUNT(vk.id) AS kept,
+    a.*
+    FROM keeps k
+    JOIN accounts a ON a.id = k.creatorId
+    LEFT JOIN vaultkeeps vk ON vk.keepId = k.id
+    WHERE k.id = 33
+    GROUP BY k.id
+    ;

@@ -26,20 +26,47 @@ public class KeepsRepository
 
   public List<Keep> Get()
   {
-    string sql = "SELECT * FROM keeps;";
+    string sql = @"
+    SELECT
+    k.*,
+    COUNT(vk.id) AS kept,
+    a.*
+    FROM keeps k
+    LEFT JOIN vaultkeeps vk ON vk.keepId = k.id
+    JOIN accounts a ON a.id = k.creatorId
+    GROUP BY k.id
+    ;";
 
-    List<Keep> keeps = _db.Query<Keep>(sql).ToList();
+    List<Keep> keeps = _db.Query<Keep, Profile, Keep>(
+      sql,
+      (k, p) => {
+        k.Creator = p;
+        return k;
+      }).ToList();
     return keeps;
   }
 
   public Keep GetById(int id)
   {
     string sql = @"
-    SELECT * FROM keeps
-    WHERE id = @id
+    SELECT
+    k.*,
+    COUNT(vk.id) AS kept,
+    a.*
+    FROM keeps k
+    LEFT JOIN vaultkeeps vk ON vk.keepId = k.id
+    JOIN accounts a ON a.id = k.creatorId
+    WHERE k.id = @id
+    GROUP BY k.id
     ;";
 
-    Keep keep = _db.QueryFirstOrDefault<Keep>(sql, new {id});
+    Keep keep = _db.Query<Keep, Profile, Keep>(
+      sql,
+      (k, p) => {
+        k.Creator = p;
+        return k;
+      },
+      new {id}).FirstOrDefault();
     return keep;
   }
 
