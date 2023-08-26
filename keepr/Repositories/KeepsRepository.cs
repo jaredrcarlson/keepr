@@ -70,6 +70,31 @@ public class KeepsRepository
     return keep;
   }
 
+  public List<Keep> GetByVaultId(int id)
+  {
+    string sql = @"
+    SELECT
+    k.*,
+    COUNT(vk.id) AS kept,
+    vk.id AS vaultKeepId,
+    a.*
+    FROM keeps k
+    LEFT JOIN vaultkeeps vk ON vk.keepId = k.id
+    JOIN accounts a ON a.id = k.creatorId
+    WHERE vk.vaultId = @id
+    GROUP BY k.id, vk.id
+    ;";
+
+    List<Keep> keeps = _db.Query<Keep, Profile, Keep>(
+      sql,
+      (k, p) => {
+        k.Creator = p;
+        return k;
+      },
+      new {id}).ToList();
+    return keeps;
+  }
+
   public Keep Update(Keep data)
   {
     string sql = @"

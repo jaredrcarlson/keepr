@@ -3,10 +3,12 @@ namespace keepr.Services;
 public class VaultKeepsService
 {
   private readonly VaultKeepsRepository _vaultKeepsRepository;
+  private readonly KeepsService _keepsService;
 
-  public VaultKeepsService(VaultKeepsRepository vaultKeepsRepository)
+  public VaultKeepsService(VaultKeepsRepository vaultKeepsRepository, KeepsService keepsService)
   {
     _vaultKeepsRepository = vaultKeepsRepository;
+    _keepsService = keepsService;
   }
 
   public VaultKeep Create(VaultKeep data)
@@ -21,10 +23,10 @@ public class VaultKeepsService
     return vk;
   }
 
-  public List<VaultKeep> GetByVaultId(int id)
+  public List<Keep> GetKeepsByVaultId(int id)
   {
-    List<VaultKeep> vks = _vaultKeepsRepository.GetByVaultId(id);
-    return vks;
+    List<Keep> keeps = _keepsService.GetByVaultId(id);
+    return keeps;
   }
 
   public void Remove(int id, Account user)

@@ -37,16 +37,16 @@ public class VaultKeepsRepository
     return vk;
   }
 
-  public List<VaultKeep> GetByVaultId(int id)
-  {
-    string sql = @"
-    SELECT * FROM vaultkeeps
-    WHERE vaultId = @id
-    ;";
+  // public List<VaultKeep> GetByVaultId(int id)
+  // {
+  //   string sql = @"
+  //   SELECT * FROM vaultkeeps
+  //   WHERE vaultId = @id
+  //   ;";
 
-    List<VaultKeep> vks = _db.Query<VaultKeep>(sql, new {id}).ToList();
-    return vks;
-  }
+  //   List<VaultKeep> vks = _db.Query<VaultKeep>(sql, new {id}).ToList();
+  //   return vks;
+  // }
 
   public void Remove(int id)
   {
