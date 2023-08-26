@@ -40,5 +40,9 @@ class KeepsService {
       AppState.keeps.splice(i, 1)
     }
   }
+
+  clearKeeps() {
+    AppState.keeps = null
+  }
 }
 export const keepsService = new KeepsService();

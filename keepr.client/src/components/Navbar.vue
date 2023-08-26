@@ -51,6 +51,10 @@ a:hover {
   text-decoration: none;
 }
 
+nav {
+  border-bottom: 3px solid lightgray;
+}
+
 .nav-link {
   text-transform: uppercase;
 }
