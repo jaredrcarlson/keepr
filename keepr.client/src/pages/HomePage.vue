@@ -1,19 +1,35 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container-fluid">
+    <div class="row mt-4 gx-3 mx-4">
+      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3">
+        <KeepCard :keep="keep" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { computed, onUnmounted, watchEffect } from 'vue';
+import { AppState } from '../AppState.js';
+import { keepsService } from '../services/KeepsService.js';
+import KeepCard from '../components/KeepCard.vue';
+
 export default {
+  components: { KeepCard },
   setup() {
-    return {}
+
+    watchEffect(() => {
+      AppState.keeps
+      keepsService.get()
+    })
+
+    onUnmounted(() => {
+      keepsService.clearKeeps()
+    })
+
+    return {
+      keeps: computed(() => AppState.keeps)
+    }
   }
 }
 </script>
