@@ -13,8 +13,13 @@ public class VaultKeepsService
     _vaultsService = vaultsService;
   }
 
-  internal VaultKeep Create(VaultKeep data)
+  internal VaultKeep Create(VaultKeep data, Account user)
   {
+    Vault vault = _vaultsService.GetById(data.VaultId, user);
+    if(user.Id != vault.CreatorId) {
+      throw new Exception("Action cannot be performed.");
+    }
+    data.CreatorId = user.Id;
     VaultKeep vk = _vaultKeepsRepository.Create(data);
     return vk;
   }

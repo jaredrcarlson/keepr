@@ -20,8 +20,7 @@ public class VaultKeepsController : ControllerBase
     try
     {
       Account user = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      data.CreatorId = user.Id;
-      VaultKeep vk = _vaultKeepsService.Create(data);
+      VaultKeep vk = _vaultKeepsService.Create(data, user);
       return Ok(vk);
     }
     catch (Exception e)
