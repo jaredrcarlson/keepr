@@ -4,32 +4,35 @@ public class VaultKeepsService
 {
   private readonly VaultKeepsRepository _vaultKeepsRepository;
   private readonly KeepsService _keepsService;
+  private readonly VaultsService _vaultsService;
 
-  public VaultKeepsService(VaultKeepsRepository vaultKeepsRepository, KeepsService keepsService)
+  public VaultKeepsService(VaultKeepsRepository vaultKeepsRepository, KeepsService keepsService, VaultsService vaultsService)
   {
     _vaultKeepsRepository = vaultKeepsRepository;
     _keepsService = keepsService;
+    _vaultsService = vaultsService;
   }
 
-  public VaultKeep Create(VaultKeep data)
+  internal VaultKeep Create(VaultKeep data)
   {
     VaultKeep vk = _vaultKeepsRepository.Create(data);
     return vk;
   }
 
-  public VaultKeep GetById(int id)
+  internal VaultKeep GetById(int id)
   {
     VaultKeep vk = _vaultKeepsRepository.GetById(id);
     return vk;
   }
 
-  public List<Keep> GetKeepsByVaultId(int id)
+  internal List<Keep> GetKeepsByVaultId(int id, Account user)
   {
+    _vaultsService.GetById(id, user);  // throws Exception for bad user if vault is private
     List<Keep> keeps = _keepsService.GetByVaultId(id);
     return keeps;
   }
 
-  public void Remove(int id, Account user)
+  internal void Remove(int id, Account user)
   {
     VaultKeep vk = GetById(id);
     if(user == null || user.Id != vk.CreatorId)

@@ -9,31 +9,37 @@ public class KeepsService
     _keepsRepository = keepsRepository;
   }
 
-  public Keep Create(Keep data)
+  internal Keep Create(Keep data)
   {
     Keep keep = _keepsRepository.Create(data);
     return keep;
   }
 
-  public List<Keep> Get()
+  internal List<Keep> Get()
   {
     List<Keep> keeps = _keepsRepository.Get();
     return keeps;
   }
 
-  public Keep GetById(int id)
+  internal Keep GetById(int id)
   {
     Keep keep = _keepsRepository.GetById(id) ?? throw new Exception("Unable to retrieve requested resource.");
     return keep;
   }
 
-  public List<Keep> GetByVaultId(int id)
+  internal List<Keep> GetByProfileId(string id)
+  {
+    List<Keep> keeps = _keepsRepository.GetByCreatorId(id);
+    return keeps;
+  }
+
+  internal List<Keep> GetByVaultId(int id)
   {
     List<Keep> keeps = _keepsRepository.GetByVaultId(id);
     return keeps;
   }
 
-  public Keep Update(Keep data, Account user)
+  internal Keep Update(Keep data, Account user)
   {
     Keep keep = GetById(data.Id);
     if(user == null || user.Id != keep.CreatorId)
@@ -51,7 +57,7 @@ public class KeepsService
     return keep;
   }
 
-  public void Remove(int id, Account user)
+  internal void Remove(int id, Account user)
   {
     Keep keep = GetById(id);
     if(user == null || user.Id != keep.CreatorId)

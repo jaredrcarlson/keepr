@@ -9,7 +9,7 @@ public class KeepsRepository
     _db = db;
   }
 
-  public Keep Create(Keep data)
+  internal Keep Create(Keep data)
   {
     string sql = @"
     INSERT INTO keeps
@@ -24,7 +24,7 @@ public class KeepsRepository
     return GetById(id);
   }
 
-  public List<Keep> Get()
+  internal List<Keep> Get()
   {
     string sql = @"
     SELECT
@@ -46,7 +46,7 @@ public class KeepsRepository
     return keeps;
   }
 
-  public Keep GetById(int id)
+  internal Keep GetById(int id)
   {
     string sql = @"
     SELECT
@@ -70,7 +70,31 @@ public class KeepsRepository
     return keep;
   }
 
-  public List<Keep> GetByVaultId(int id)
+  internal List<Keep> GetByCreatorId(string id)
+  {
+    string sql = @"
+    SELECT
+    k.*,
+    COUNT(vk.id) AS kept,
+    a.*
+    FROM keeps k
+    LEFT JOIN vaultkeeps vk ON vk.keepId = k.id
+    JOIN accounts a ON a.id = k.creatorId
+    WHERE k.creatorId = @id
+    GROUP BY k.id
+    ;";
+
+    List<Keep> keeps = _db.Query<Keep, Profile, Keep>(
+      sql,
+      (k, p) => {
+        k.Creator = p;
+        return k;
+      },
+      new {id}).ToList();
+    return keeps;
+  }
+
+  internal List<Keep> GetByVaultId(int id)
   {
     string sql = @"
     SELECT
@@ -95,7 +119,7 @@ public class KeepsRepository
     return keeps;
   }
 
-  public Keep Update(Keep data)
+  internal Keep Update(Keep data)
   {
     string sql = @"
     UPDATE keeps SET
@@ -111,7 +135,7 @@ public class KeepsRepository
     return keep;
   }
 
-  public void Remove(int id)
+  internal void Remove(int id)
   {
     string sql = @"
     DELETE FROM keeps

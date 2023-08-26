@@ -9,21 +9,40 @@ public class VaultsService
     _vaultsRepository = vaultsRepository;
   }
 
-  public Vault Create(Vault data)
+  internal Vault Create(Vault data)
   {
     Vault vault = _vaultsRepository.Create(data);
     return vault;
   }
 
-  public Vault GetById(int id)
+  internal Vault GetById(int id, Account user)
   {
     Vault vault = _vaultsRepository.GetById(id) ?? throw new Exception("Unable to retrieve requested resource.");
+    if(vault.IsPrivate == true)
+    {
+      if(user != null && user.Id == vault.CreatorId)
+      {
+        return vault;
+      }
+      throw new Exception("Action cannot be performed.");
+    }
     return vault;
   }
 
-  public Vault Update(Vault data, Account user)
+  internal List<Vault> GetByCreatorId(string id, Account user = null)
   {
-    Vault vault = GetById(data.Id);
+    List<Vault> allVaults = _vaultsRepository.GetByCreatorId(id);
+    if (user != null && user.Id == id) {
+      return allVaults;
+    }
+
+    List<Vault> publicVaults = allVaults.FindAll(vault => vault.IsPrivate == false);
+    return publicVaults;
+  }
+
+  internal Vault Update(Vault data, Account user)
+  {
+    Vault vault = GetById(data.Id, user);
     if(user == null || user.Id != vault.CreatorId)
     {
       throw new Exception("Action cannot be performed.");
@@ -38,9 +57,9 @@ public class VaultsService
     return vault;
   }
 
-  public void Remove(int id, Account user)
+  internal void Remove(int id, Account user)
   {
-    Vault vault = GetById(id);
+    Vault vault = GetById(id, user);
     if(user == null || user.Id != vault.CreatorId)
     {
       throw new Exception("Action cannot be performed.");

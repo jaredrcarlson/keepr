@@ -9,6 +9,12 @@ public class AccountService
     _repo = repo;
   }
 
+  internal Profile GetProfileById(string id)
+  {
+    Profile profile = _repo.GetById(id);
+    return profile;
+  }
+
   internal Account GetProfileByEmail(string email)
   {
     return _repo.GetByEmail(email);

@@ -11,7 +11,7 @@ public class VaultKeepsRepository
     _db = db;
   }
 
-  public VaultKeep Create(VaultKeep data)
+  internal VaultKeep Create(VaultKeep data)
   {
     string sql = @"
     INSERT INTO vaultkeeps
@@ -26,7 +26,7 @@ public class VaultKeepsRepository
     return GetById(id);
   }
 
-  public VaultKeep GetById(int id)
+  internal VaultKeep GetById(int id)
   {
     string sql = @"
     SELECT * FROM vaultkeeps
@@ -37,7 +37,7 @@ public class VaultKeepsRepository
     return vk;
   }
 
-  // public List<VaultKeep> GetByVaultId(int id)
+  // internal List<VaultKeep> GetByVaultId(int id)
   // {
   //   string sql = @"
   //   SELECT * FROM vaultkeeps
@@ -48,7 +48,7 @@ public class VaultKeepsRepository
   //   return vks;
   // }
 
-  public void Remove(int id)
+  internal void Remove(int id)
   {
     string sql = @"
     DELETE FROM vaultkeeps

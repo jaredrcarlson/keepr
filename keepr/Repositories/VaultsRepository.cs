@@ -9,7 +9,7 @@ public class VaultsRepository
     _db = db;
   }
 
-  public Vault Create(Vault data)
+  internal Vault Create(Vault data)
   {
     string sql = @"
     INSERT INTO vaults
@@ -25,7 +25,7 @@ public class VaultsRepository
     return vault;
   }
 
-  public Vault GetById(int id)
+  internal Vault GetById(int id)
   {
     string sql = @"
     SELECT
@@ -48,7 +48,30 @@ public class VaultsRepository
     return vault;
   }
 
-  public Vault Update(Vault data)
+  internal List<Vault> GetByCreatorId(string id)
+  {
+    string sql = @"
+    SELECT
+    v.*,
+    a.*
+    FROM vaults v
+    JOIN accounts a ON a.id = v.creatorId
+    WHERE v.creatorId = @id
+    ;";
+
+    List<Vault> vaults = _db.Query<Vault, Profile, Vault>(
+      sql,
+      (v, p) => {
+        v.Creator = p;
+        return v;
+      },
+      new {id}
+    ).ToList();
+
+    return vaults;
+  }
+
+  internal Vault Update(Vault data)
   {
     string sql = @"
     UPDATE vaults SET
@@ -64,7 +87,7 @@ public class VaultsRepository
     return vault;
   }
 
-  public void Remove(int id)
+  internal void Remove(int id)
   {
     string sql = @"
     DELETE FROM vaults
