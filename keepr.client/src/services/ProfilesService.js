@@ -19,5 +19,11 @@ class ProfilesService {
     const res = await api.get(`api/profiles/${id}/vaults`)
     AppState.profileVaults = res.data.map(data => new Vault(data))
   }
+
+  clear() {
+    AppState.profile = null
+    AppState.profileVaults = []
+    AppState.profileKeeps = []
+  }
 }
 export const profilesService = new ProfilesService();

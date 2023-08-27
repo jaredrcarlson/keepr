@@ -1,18 +1,18 @@
 <template>
   <div class="container px-5">
-    <div v-if="account.id" class="row mt-3">
+    <div v-if="profile" class="row mt-3">
       <div class="col-12" align="center">
         <div class="cover-img d-flex flex-column align-items-center">
-          <img class="img-fluid" :src="account.coverImg" :alt="account.name" :title="account.name"/>
-          <img class="account-img" :src="account.picture" :alt="account.name" :title="account.name">
+          <img class="img-fluid" :src="profile.coverImg" :alt="profile.name" :title="profile.name"/>
+          <img class="profile-img" :src="profile.picture" :alt="profile.name" :title="profile.name">
         </div>
       </div>
     </div>
         
-    <div v-if="account.id && vaults && keeps" class="row mt-4">
+    <div v-if="profile && vaults && keeps" class="row mt-4">
       <div class="col-12 d-flex flex-column align-items-center">
         <div class="mt-4 fs-4 fw-bold">
-          {{ account.name }}
+          {{ profile.name }}
         </div>
         <div class="text-muted">
           {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
@@ -46,27 +46,30 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState';
 import VaultCard from '../components/VaultCard.vue';
 import KeepCard from '../components/KeepCard.vue';
 import { profilesService } from '../services/ProfilesService.js';
+import { useRoute } from 'vue-router';
 
 export default {
   components: { VaultCard, KeepCard },
   setup() {
-    const accountId = computed(() => AppState.account.id)
-    
+    const route = useRoute()
+
     onMounted(() => {
-      while(!AppState.account) {
-        console.log('waiting for account')
-      }
-      profilesService.getVaultsByProfileId(accountId.value)
-      profilesService.getKeepsByProfileId(accountId.value)
+      profilesService.getProfileById(route.params.profileId)
+      profilesService.getVaultsByProfileId(route.params.profileId)
+      profilesService.getKeepsByProfileId(route.params.profileId)
+    })
+
+    onUnmounted(() => {
+      profilesService.clear()
     })
 
     return {
-      account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile),
       vaults: computed(() => AppState.profileVaults),
       keeps: computed(() => AppState.profileKeeps)
     }
@@ -81,7 +84,7 @@ export default {
   border-radius: 8px;
 }
 
-.account-img {
+.profile-img {
   position: absolute;
   bottom: -6vh;
   height: 12vh;
