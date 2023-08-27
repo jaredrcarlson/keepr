@@ -16,7 +16,7 @@ import Navbar from './components/Navbar.vue'
 export default {
   setup() {
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
     }
   },
   components: { Navbar }
@@ -88,6 +88,13 @@ header, body{
   background-color: $color1;
 }
 
+.creator-img{
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
 
 
 </style>

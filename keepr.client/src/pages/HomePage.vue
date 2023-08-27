@@ -4,6 +4,7 @@
       <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3">
         <KeepCard :keep="keep" />
       </div>
+      <KeepDetailsModal />
     </div>
   </div>
 </template>
@@ -13,9 +14,10 @@ import { computed, onUnmounted, watchEffect } from 'vue';
 import { AppState } from '../AppState.js';
 import { keepsService } from '../services/KeepsService.js';
 import KeepCard from '../components/KeepCard.vue';
+import KeepDetailsModal from '../components/KeepDetailsModal.vue';
 
 export default {
-  components: { KeepCard },
+  components: { KeepCard, KeepDetailsModal },
   setup() {
 
     watchEffect(() => {

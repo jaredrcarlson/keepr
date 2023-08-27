@@ -41,6 +41,10 @@ class KeepsService {
     }
   }
 
+  setKeep(keep) {
+    AppState.keep = keep
+  }
+
   clearKeeps() {
     AppState.keeps = null
   }
