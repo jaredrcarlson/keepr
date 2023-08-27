@@ -4,7 +4,7 @@ import { api } from "./AxiosService.js"
 
 class VaultKeepsService {
   async create(data) {
-    const res = await api.create('api/vaultkeeps', data)
+    const res = await api.post('api/vaultkeeps', data)
     AppState.vaultkeep = new VaultKeep(res.data)
     AppState.vaultkeeps.push(AppState.vaultkeep)
   }
@@ -17,4 +17,4 @@ class VaultKeepsService {
     }
   }
 }
-export const vaultKeepsService = VaultKeepsService();
+export const vaultKeepsService = new VaultKeepsService();

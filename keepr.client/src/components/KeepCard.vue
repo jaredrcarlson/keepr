@@ -16,6 +16,8 @@
 import { Modal } from 'bootstrap';
 import { Keep } from '../models/Keep.js';
 import { keepsService } from '../services/KeepsService.js';
+import { accountService } from '../services/AccountService.js';
+import { AppState } from '../AppState.js';
 
 export default {
   props: {
@@ -26,6 +28,10 @@ export default {
     return {
       openKeepDetails(keep) {
         keepsService.setKeep(keep)
+        if(AppState.account.id) {
+          accountService.getAccountVaults()
+        }
+        keepsService.update(keep.id, {views: ++keep.views})
         Modal.getOrCreateInstance("#keepDetailsModal").show()
       }
     }

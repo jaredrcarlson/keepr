@@ -1,25 +1,94 @@
 <template>
-  <div class="about text-center">
-    <h1>Welcome {{ account.name }}</h1>
-    <img class="rounded" :src="account.picture" alt="" />
-    <p>{{ account.email }}</p>
+  <div class="container px-5">
+    <div class="row mt-3">
+      <div class="col-12" align="center">
+        <div class="cover-img d-flex flex-column align-items-center">
+          <img class="img-fluid" :src="account.coverImg" :alt="account.name" :title="account.name"/>
+          <img class="account-img" :src="account.picture" :alt="account.name" :title="account.name">
+        </div>
+      </div>
+    </div>
+        
+    <div v-if="vaults && keeps" class="row mt-4">
+      <div class="col-12 d-flex flex-column align-items-center">
+        <div class="mt-4 fs-4 fw-bold">
+          {{ account.name }}
+        </div>
+        <div class="text-muted">
+          {{ vaults.length }} Vaults | {{ keeps.length }} Keeps
+        </div>
+      </div>
+    </div>
+
+    <div v-if="vaults" class="row">
+      <div class="col-12">
+        <div class="fs-3 fw-bold mb-2">Vaults</div>
+        <div class="row">
+          <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-3 mb-3">
+            <VaultCard :vault="vault" />
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div v-if="keeps" class="row">
+      <div class="col-12">
+        <div class="fs-3 fw-bold mb-2">Keeps</div>
+        <div class="row">
+          <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
+            <KeepCard :keep="keep" />
+          </div>
+        </div>
+      </div>
+    </div>
+        
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
+import VaultCard from '../components/VaultCard.vue';
+import KeepCard from '../components/KeepCard.vue';
+import { profilesService } from '../services/ProfilesService.js';
+
 export default {
+  components: { VaultCard, KeepCard },
   setup() {
+    const accountId = computed(() => AppState.account.id)
+    
+    onMounted(() => {
+      while(!AppState.account) {
+        console.log('waiting for account')
+      }
+      profilesService.getVaultsByProfileId(accountId.value)
+      profilesService.getKeepsByProfileId(accountId.value)
+    })
+
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      vaults: computed(() => AppState.profileVaults),
+      keeps: computed(() => AppState.profileKeeps)
     }
   }
 }
 </script>
 
 <style scoped>
-img {
-  max-width: 100px;
+.cover-img {
+  position: relative;
+  max-width: 45vw;
+  border-radius: 8px;
 }
+
+.account-img {
+  position: absolute;
+  bottom: -6vh;
+  height: 12vh;
+  width: 12vh;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
 </style>

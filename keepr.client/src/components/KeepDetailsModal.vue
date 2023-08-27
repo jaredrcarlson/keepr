@@ -14,18 +14,16 @@
                     <span class="me-4"><i class="mdi mdi-eye me-2"></i>{{ keep.views }}</span>
                     <span><i class="mdi mdi-alpha-k-box me-2"></i>{{ keep.kept }}</span>
                 </div>
-                <div class="px-3">
+                <div class="px-3"> 
                   <div class="text-center fw-bold fs-5">{{ keep.name }}</div>
                   <div>{{ keep.description }}</div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <select class="bc-pale border-0 selectable me-2" aria-label="Create Keep or Vault" required>
-                      <option value="v1">Vault 1</option>
-                      <option value="v2">Vault 2</option>
-                      <option value="v3">Vault 3</option>
+                    <select v-model="selectedVault" class="bc-pale border-0 selectable me-2" aria-label="Create Keep or Vault" required>
+                      <option v-for="vault in vaults" :key="vault.id" :value="vault">{{ vault.name }}</option>
                     </select>
-                    <button class="btn btn-sm tc-white bc-dark-purple">Save</button>
+                    <button @click="createVaultKeep(keep)" class="btn btn-sm tc-white bc-dark-purple">Save</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <img class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
@@ -40,13 +38,38 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import { AppState } from '../AppState.js';
+import { accountService } from '../services/AccountService.js';
+import { vaultKeepsService } from '../services/VaultKeepsService.js';
+import { VaultKeep } from '../models/VaultKeep.js';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
+import { keepsService } from '../services/KeepsService.js';
 
 export default {
   setup(){
+    const selectedVault = ref({})
+
+    async function createVaultKeep(keep) {
+      try {
+        await vaultKeepsService.create({vaultId: selectedVault.value.id, keepId: keep.id})
+        await keepsService.update(keep.id, {kept: ++keep.kept})
+      } catch (error) {
+        logger.log(error)
+        Pop.error(error.message)
+      }
+    }
+
+    // onBeforeMount(() => {
+    //   accountService.getAccountVaults()
+    // })
+
     return {
-      keep: computed(() => AppState.keep)
+      selectedVault,
+      keep: computed(() => AppState.keep),
+      vaults: computed(() => AppState.accountVaults),
+      createVaultKeep
     }
   }
 }

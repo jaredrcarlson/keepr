@@ -7,32 +7,32 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Profile.js').Profile} */
   user: {},
-  /** @type {import('./models/Vault.js').Vault[] | null} */
-  accountVaults: null,
+  /** @type {import('./models/Vault.js').Vault[]} */
+  accountVaults: [],
 
   /** ------ Profiles ------ */
   /** @type {import('./models/Profile.js').Profile} */
   profile: null,
-  /** @type {import('./models/Keep.js').Keep[] | null} */
-  profileKeeps: null,
-  /** @type {import('./models/Vault.js').Vault[] | null} */
-  profileVaults: null,
+  /** @type {import('./models/Keep.js').Keep[]} */
+  profileKeeps: [],
+  /** @type {import('./models/Vault.js').Vault[]} */
+  profileVaults: [],
 
   /** ------ Keeps ------ */
-  /** @type {import('./models/Keep.js').Keep[] | null} */
-  keeps: null,
+  /** @type {import('./models/Keep.js').Keep[]} */
+  keeps: [],
   /** @type {import('./models/Keep.js').Keep | null} */
   keep: null,
 
   /** ------ Vaults ------ */
-  /** @type {import('./models/Vault.js').Vault[] | null} */
-  vaults: null,
+  /** @type {import('./models/Vault.js').Vault[]} */
+  vaults: [],
   /** @type {import('./models/Vault.js').Vault | null} */
   vault: null,
 
   /** ------ VaultKeeps ------ */
-  /** @type {import('./models/VaultKeep.js').VaultKeep[] | null} */
-  vaultkeeps: null,
+  /** @type {import('./models/VaultKeep.js').VaultKeep[]} */
+  vaultkeeps: [],
   /** @type {import('./models/VaultKeep.js').VaultKeep | null} */
   vaultkeep: null,
 

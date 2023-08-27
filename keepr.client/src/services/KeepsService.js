@@ -4,7 +4,7 @@ import { api } from "./AxiosService.js";
 
 class KeepsService {
   async create(data) {
-    const res = await api.create('api/keeps', data)
+    const res = await api.post('api/keeps', data)
     AppState.keeps.push(new Keep(res.data))
   }
 
