@@ -42,15 +42,21 @@ import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
 import { vaultsService } from '../services/VaultsService.js';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import Pop from '../utils/Pop.js';
 
 export default {
   components: { KeepCard },
   setup() {
     const route = useRoute()
+    const router = useRouter()
 
-    onMounted(() => {
-      vaultsService.getById(route.params.vaultId)
+    onMounted(async() => {
+      const response = await vaultsService.getById(route.params.vaultId)
+      if(response.status != 200) {
+        Pop.error('Unauthorized')
+        router.push({name: 'Home'})
+      }
     })
 
     onUnmounted(() => {

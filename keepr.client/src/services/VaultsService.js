@@ -10,9 +10,14 @@ class VaultsService {
   }
 
   async getById(id) {
-    const res = await api.get(`api/vaults/${id}`)
-    res.data.keeps = await this.getKeepsByVaultId(id)
-    AppState.vault = new Vault(res.data)
+    try {
+      const res = await api.get(`api/vaults/${id}`)
+      res.data.keeps = await this.getKeepsByVaultId(id)
+      AppState.vault = new Vault(res.data)
+      return res
+    } catch (error) {
+      return error.response
+    }
   }
 
   async getKeepsByVaultId(id) {

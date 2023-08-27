@@ -41,6 +41,7 @@ import { vaultKeepsService } from '../services/VaultKeepsService.js';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 import { keepsService } from '../services/KeepsService.js';
+import { Modal } from 'bootstrap';
 
 export default {
   setup(){
@@ -49,20 +50,23 @@ export default {
         const keep = vault.keeps.find(k => k.id == keepId)
         await vaultKeepsService.remove(keep.vaultKeepId)
         await keepsService.update(keep.id, {kept: --keep.kept})
+        Pop.success(`'${keep.name}' removed from '${vault.name}'`)
+        close()   
       } catch (error) {
         logger.log(error)
         Pop.error(error.message)
       }
     }
 
-    // onBeforeMount(() => {
-    //   accountService.getAccountVaults()
-    // })
+    function close() {
+      Modal.getOrCreateInstance('#vaultKeepDetailsModal').hide()
+    }
 
     return {
       keep: computed(() => AppState.keep),
       vault: computed(() => AppState.vault),
-      removeVaultKeep
+      removeVaultKeep,
+      close
     }
   }
 }

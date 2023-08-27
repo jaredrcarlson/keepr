@@ -12,10 +12,10 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/profile/:profileId',
-    name: 'Profile',
-    component: loadPage('ProfilePage'),
-    beforeEnter: authSettled
+    path: '/account',
+    name: 'Account',
+    component: loadPage('AccountPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/vault/:vaultId',
@@ -24,10 +24,10 @@ const routes = [
     beforeEnter: authSettled
   },
   {
-    path: '/account',
-    name: 'Account',
-    component: loadPage('AccountPage'),
-    beforeEnter: authGuard
+    path: '/profile/:profileId',
+    name: 'Profile',
+    component: loadPage('ProfilePage'),
+    beforeEnter: authSettled
   }
 ]
 

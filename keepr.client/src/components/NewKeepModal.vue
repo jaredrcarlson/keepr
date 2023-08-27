@@ -4,7 +4,7 @@
       <div class="bc-white modal-content container-fluid rounded">
         <div class="modal-header border-0">
           <div class="modal-title fs-2 fw-bold text-muted">Add your keep</div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button @click="close()" type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-2">
@@ -33,6 +33,7 @@ import { ref } from 'vue';
 import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 import { keepsService } from '../services/KeepsService.js';
+import { Modal } from 'bootstrap';
 
 export default {
   setup(){
@@ -41,15 +42,22 @@ export default {
     async function create() {
       try {
         await keepsService.create(data.value)
+        Pop.success(`'${data.value.name}' created successfully`)
+        close()
       } catch (error) {
         logger.log(error)
         Pop.error(error.message)
       }
     }
 
+    function close() {
+      Modal.getOrCreateInstance('#newKeepModal').hide()
+    }
+
     return {
       data,
-      create
+      create,
+      close
     }
   }
 }

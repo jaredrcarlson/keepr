@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue';
+import { computed, watchEffect } from 'vue';
 import { AppState } from '../AppState';
 import VaultCard from '../components/VaultCard.vue';
 import KeepCard from '../components/KeepCard.vue';
@@ -57,14 +57,13 @@ import { profilesService } from '../services/ProfilesService.js';
 export default {
   components: { VaultCard, KeepCard },
   setup() {
-    const accountId = computed(() => AppState.account.id)
     
-    onMounted(() => {
-      while(!AppState.account) {
-        console.log('waiting for account')
+    watchEffect(() => {
+      const account = AppState.account
+      if(account.id) {
+        profilesService.getVaultsByProfileId(account.id)
+        profilesService.getKeepsByProfileId(account.id)
       }
-      profilesService.getVaultsByProfileId(accountId.value)
-      profilesService.getKeepsByProfileId(accountId.value)
     })
 
     return {
