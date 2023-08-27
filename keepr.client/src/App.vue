@@ -5,6 +5,9 @@
   <main>
     <router-view />
     <KeepDetailsModal />
+    <VaultKeepDetailsModal />
+    <NewKeepModal />
+    <NewVaultModal />
   </main>
   <footer></footer>
 </template>
@@ -14,9 +17,12 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import KeepDetailsModal from './components/KeepDetailsModal.vue';
+import VaultKeepDetailsModal from './components/VaultKeepDetailsModal.vue';
+import NewKeepModal from './components/NewKeepModal.vue';
+import NewVaultModal from './components/NewVaultModal.vue';
 
 export default {
-  components: { Navbar, KeepDetailsModal },
+  components: { Navbar, KeepDetailsModal, VaultKeepDetailsModal, NewVaultModal, NewKeepModal },
   setup() {
     return {
       appState: computed(() => AppState),

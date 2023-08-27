@@ -28,7 +28,6 @@
       <div v-for="keep in vault.keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
         <KeepCard :keep="keep" :modalId="'vaultKeepDetailsModal'" />
       </div>
-      <VaultKeepDetailsModal />
     </div>
 
   </div>
@@ -42,12 +41,11 @@
 import { computed, onMounted, onUnmounted } from 'vue';
 import { AppState } from '../AppState.js';
 import KeepCard from '../components/KeepCard.vue';
-import VaultKeepDetailsModal from '../components/VaultKeepDetailsModal.vue';
 import { vaultsService } from '../services/VaultsService.js';
 import { useRoute } from 'vue-router';
 
 export default {
-  components: { KeepCard, VaultKeepDetailsModal },
+  components: { KeepCard },
   setup() {
     const route = useRoute()
 

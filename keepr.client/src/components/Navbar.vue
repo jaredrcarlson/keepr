@@ -18,10 +18,10 @@
               Home
             </router-link>
           
-            <select class="bc-pale border-0 selectable" aria-label="Create Keep or Vault" required>
-              <option selected value="create">Create</option>
-              <option value="keep">Keep</option>
-              <option value="vault">Vault</option>
+            <select @change="openModal()" v-model="modalId" class="bc-pale border-0 selectable" aria-label="Create Keep or Vault" required>
+              <option selected value="none">Create</option>
+              <option value="newKeepModal">Keep</option>
+              <option value="newVaultModal">Vault</option>
             </select>
         </div>
       </div>
@@ -37,10 +37,21 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import Login from './Login.vue';
+import { Modal } from 'bootstrap';
 export default {
   setup() {
-    return {}
+    const modalId = ref("none")
+    return {
+      modalId,
+      openModal() {
+        if(modalId.value != 'none') {
+          Modal.getOrCreateInstance(`#${modalId.value}`).show()
+          modalId.value = 'none'
+        }
+      }
+    }
   },
   components: { Login }
 }

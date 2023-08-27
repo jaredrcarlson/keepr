@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <button @click="removeVaultKeep(keep)" class="btn btn-sm tc-white bc-dark-purple">Remove</button>
+                    <button @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm tc-white bc-dark-purple">Remove</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <img class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
@@ -44,9 +44,10 @@ import { keepsService } from '../services/KeepsService.js';
 
 export default {
   setup(){
-    async function removeVaultKeep(keep) {
+    async function removeVaultKeep(vault, keepId) {
       try {
-        await vaultKeepsService.remove(keep.id)
+        const keep = vault.keeps.find(k => k.id == keepId)
+        await vaultKeepsService.remove(keep.vaultKeepId)
         await keepsService.update(keep.id, {kept: --keep.kept})
       } catch (error) {
         logger.log(error)
