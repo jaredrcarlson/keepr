@@ -19,6 +19,15 @@ class AccountService {
     const res = await api.get('/account/vaults')
     AppState.accountVaults = res.data.map(data => new Vault(data))
   }
+
+  async updateAccount(data) {
+    try {
+      const res = await api.put('/account', data)
+      AppState.account = new Account(res.data)
+    } catch (error) {
+      logger.error(error)
+    }
+  }
 }
 
 export const accountService = new AccountService()
