@@ -30,7 +30,7 @@
                   </div>
                   <div class="d-flex align-items-center">
                     <router-link :to="{name: 'Profile', params: {profileId: keep.creatorId}}">
-                      <img class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
+                      <img @click="close()" class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
                     </router-link>
                     <div class="pe-1">{{ keep.creator.name }}</div>
                   </div>

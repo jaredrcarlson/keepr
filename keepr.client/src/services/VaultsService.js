@@ -44,6 +44,11 @@ class VaultsService {
     }
   }
 
+  async removeKeep(keep) {
+    const i = AppState.vault.keeps.findIndex(k => k.id == keep.id)
+    AppState.vault.keeps.splice(i, 1)
+  }
+
   clear() {
     AppState.vault = null
   }
