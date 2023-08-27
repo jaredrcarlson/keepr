@@ -18,11 +18,6 @@ class KeepsService {
     AppState.keep = new Keep(res.data)
   }
 
-  async getByVaultId(id) {
-    const res = await api.get(`api/vaults/${id}/keeps`)
-    AppState.keeps = res.data.map(data => new Keep(data))
-  }
-
   async update(id, data) {
     const res = await api.put(`api/keeps/${id}`, data)
     AppState.keep = new Keep(res.data)

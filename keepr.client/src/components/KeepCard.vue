@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="keep-card elevation-4" :style="{ backgroundImage: `url(${keep.img})` }"> -->
-  <div @click="openKeepDetails(keep)" class="keep-card elevation-4 selectable">
+  <div @click="openKeepModal(keep, modalId)" class="keep-card elevation-4 selectable">
     <img class="keep-img img-fluid" :src="keep.img" :alt="keep.name" :title="keep.name"/>
     <div class="keep-content">
       <div class="d-flex justify-content-between align-items-center">
@@ -21,18 +21,19 @@ import { AppState } from '../AppState.js';
 
 export default {
   props: {
-    keep: {type: Keep, required: true}
+    keep: {type: Keep, required: true},
+    modalId: {type: String, required: true}
   },
 
   setup(){
     return {
-      openKeepDetails(keep) {
+      openKeepModal(keep, modalId) {
         keepsService.setKeep(keep)
         if(AppState.account.id) {
           accountService.getAccountVaults()
         }
         keepsService.update(keep.id, {views: ++keep.views})
-        Modal.getOrCreateInstance("#keepDetailsModal").show()
+        Modal.getOrCreateInstance(`#${modalId}`).show()
       }
     }
   }

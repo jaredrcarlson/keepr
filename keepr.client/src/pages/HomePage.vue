@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid">
     <div class="row mt-4 gx-3 mx-4">
-      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3">
-        <KeepCard :keep="keep" />
+      <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
+        <KeepCard :keep="keep" :modalId="'keepDetailsModal'" />
       </div>
     </div>
   </div>

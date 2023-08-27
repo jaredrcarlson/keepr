@@ -1,14 +1,13 @@
 <template>
-  <div class="vault-card elevation-4">
-    <img class="img-fluid" :src="vault.img" :alt="vault.name"/>
-    <div class="vault-content d-flex justify-content-between align-items-center">
-      <p class="tc-white m-0 p-2 fs-5">{{ vault.name }}</p>
-      <div v-if="vault.isPrivate" class="bc-white lock d-flex align-items-center justify-content-center">
-        <i class="mdi mdi-lock"></i>
+    <div class="vault-card elevation-4">
+      <img class="img-fluid" :src="vault.img" :alt="vault.name"/>
+      <div class="vault-content d-flex justify-content-between align-items-center">
+        <p class="tc-white m-0 p-2 fs-5">{{ vault.name }}</p>
+        <div v-if="vault.isPrivate" class="bc-white lock d-flex align-items-center justify-content-center">
+          <i class="mdi mdi-lock"></i>
+        </div>
       </div>
-      
     </div>
-  </div>
 </template>
 
 

@@ -10,5 +10,6 @@ export class Vault extends Base {
     this.isPrivate = data.isPrivate;
     this.creatorId = data.creatorId;
     this.creator = new Profile(data.creator);
+    this.keeps = data.keeps;
   }
 }

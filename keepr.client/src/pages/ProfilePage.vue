@@ -25,7 +25,9 @@
         <div class="fs-3 fw-bold mb-2">Vaults</div>
         <div class="row">
           <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-3 mb-3">
-            <VaultCard :vault="vault" />
+            <router-link :to="{name: 'Vault', params: {vaultId: vault.id}}">
+              <VaultCard :vault="vault" />
+            </router-link>
           </div>
         </div>
       </div>
@@ -36,7 +38,7 @@
         <div class="fs-3 fw-bold mb-2">Keeps</div>
         <div class="row">
           <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
-            <KeepCard :keep="keep" />
+            <KeepCard :keep="keep" :modalId="'keepDetailsModal'" />
           </div>
         </div>
       </div>
