@@ -3,7 +3,7 @@
     <div v-if="account.id" class="row mt-3">
       <div class="col-12" align="center">
         <div class="cover-img d-flex flex-column align-items-center">
-          <img class="img-fluid" :src="account.coverImg" :alt="account.name" :title="account.name"/>
+          <img class="cover-img img-fluid" :src="account.coverImg" :alt="account.name" :title="account.name"/>
           <img class="account-img" :src="account.picture" :alt="account.name" :title="account.name">
         </div>
       </div>

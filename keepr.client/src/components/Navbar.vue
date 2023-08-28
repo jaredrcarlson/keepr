@@ -20,11 +20,32 @@
               </div>
             </router-link>
           
-            <select @change="openModal()" v-model="modalId" class="bc-pale border-0 selectable" aria-label="Create Keep or Vault" required>
+            <!-- <select @change="openModal()" v-model="modalId" class="bc-pale border-0 selectable" aria-label="Create Keep or Vault" required>
               <option selected value="none">Create</option>
               <option value="newKeepModal">Keep</option>
               <option value="newVaultModal">Vault</option>
-            </select>
+            </select> -->
+
+            <div class="dropdown my-2 my-lg-0">
+              <!-- <div type="button" class="border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
+                Create
+              </div> -->
+              <div class="create-btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="ms-1 mt-2 pt-1">Create<i class="mdi mdi-menu-down"></i></div>
+              </div>
+              <div class="dropdown-menu dropdown-menu-start p-0" aria-labelledby="authDropdown">
+                <div class="list-group">
+                  <div @click="openModal('newKeepModal')" class="new-btn dropdown-item list-group-item-action selectable">
+                    new keep
+                  </div>
+                  <div @click="openModal('newVaultModal')" class="new-btn dropdown-item list-group-item-action selectable">
+                    new vault
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
         </div>
       </div>
       <div>
@@ -47,10 +68,15 @@ export default {
     const modalId = ref("none")
     return {
       modalId,
-      openModal() {
-        if(modalId.value != 'none') {
-          Modal.getOrCreateInstance(`#${modalId.value}`).show()
-          modalId.value = 'none'
+      // openModal() {
+      //   if(modalId.value != 'none') {
+      //     Modal.getOrCreateInstance(`#${modalId.value}`).show()
+      //     modalId.value = 'none'
+      //   }
+      // }
+      openModal(name) {
+        if(name != 'none') {
+          Modal.getOrCreateInstance(`#${name}`).show()
         }
       }
     }

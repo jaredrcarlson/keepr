@@ -14,16 +14,18 @@
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
             <router-link :to="{ name: 'Account Update' }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                Update Account
+              <div class="new-btn dropdown-item list-group-item-action selectable">
+                edit account
               </div>
             </router-link>
-            <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">
+            <div class="new-btn dropdown-item list-group-item-action selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
               logout
             </div>
           </div>
+
         </div>
+
       </div>
     </div>
   </span>

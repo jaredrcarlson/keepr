@@ -90,6 +90,27 @@ $clrRed: #ce1c1c;
   background-color: $color5;
 }
 
+.new-btn {
+  background-color: $color3;
+  color: $color5;
+  
+  &:hover {
+    background-color: $color4;
+    color: $color1;
+  }
+}
+
+.create-btn {
+  background-color: $color1;
+  color: $color5;
+  
+  &:hover {
+    cursor: pointer;
+    background-color: $color1;
+    color: $color5;
+  }
+}
+
 .save-btn {
   background-color: $color4;
   color: $color1;
