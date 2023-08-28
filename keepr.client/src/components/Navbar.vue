@@ -14,8 +14,10 @@
     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarText">
       <div>
         <div class="navbar-nav me-auto">
-            <router-link :to="{ name: 'Home' }" class="btn selectable">
-              Home
+            <router-link :to="{ name: 'Home' }" class="btn">
+              <div class="bc-peach rounded selectable">
+                <div class="px-3 py-1">Home</div>
+              </div>
             </router-link>
           
             <select @change="openModal()" v-model="modalId" class="bc-pale border-0 selectable" aria-label="Create Keep or Vault" required>

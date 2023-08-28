@@ -3,29 +3,29 @@
     <div v-if="account.id" class="row mt-3">
       <div class="col-12" align="center">
         <div class="cover-img d-flex flex-column align-items-center">
-          <img class="img-fluid" :src="account.coverImg" :alt="account.name" :title="account.name"/>
+          <img class="cover-img img-fluid" :src="account.coverImg" :alt="account.name" :title="account.name"/>
           <img class="account-img" :src="account.picture" :alt="account.name" :title="account.name">
         </div>
       </div>
     </div>
-    <div class="row mt-3">
+    <div class="row my-5 mx-md-5">
       <div class="col-12">
-        <div class="fs-3 fw-bold">Update Account Info</div>
+        <div class="fs-3 fw-bold my-2">Update Account Details</div>
         <div class="mb-3">
-          <label for="name">Name</label>
+          <label class="ms-1" for="name">Name</label>
           <input v-model="data.name" type="text" id="name" name="name" title="Name" class="form-control" minlength="1" maxlength="255">
         </div>
         <div class="mb-3">
-          <label for="coverImg">Cover Image</label>
+          <label class="ms-1" for="coverImg">Cover Image</label>
           <input v-model="data.coverImg" type="url" id="coverImg" name="coverImg" title="Cover Image" class="form-control" minlength="1" maxlength="2083">
         </div>
         <div class="mb-3">
-          <label for="picture">Profile Picture</label>
+          <label class="ms-1" for="picture">Profile Picture</label>
           <input v-model="data.picture" type="url" id="picture" name="picture" title="Profile Picture" class="form-control" minlength="1" maxlength="2083">
         </div>
-        <div v-if="dataChanged()" class="d-flex justify-content-end">
-          <button  @click="resetData()" class="btn tc-white bc-black me-2">Revert Changes</button>
-          <button  @click="updateAccount()" class="btn tc-white bc-black">Save Changes</button>
+        <div class="d-flex justify-content-end">
+          <button v-if="dataChanged()"  @click="resetData()" class="btn tc-white bc-black me-2">Revert Changes</button>
+          <button @click="updateAccount()" class="btn tc-white bc-black">Save Changes</button>
         </div>
       </div>
     </div>

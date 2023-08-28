@@ -4,13 +4,9 @@
       <div class="col-12" align="center">
         <div class="vault-img d-flex flex-column align-items-center">
           <img class="img-fluid" :src="vault.img" :alt="vault.name" :title="vault.name"/>
-          <div class="tc-white vault-content">
-            <div class="fs-4 fw-bold">
-              {{ vault.name }}
-            </div>
-            <div class="">
-              by {{ vault.creator.name }}
-            </div>
+          <div class="tc-white txt-shadow vault-content">
+            <div class="fs-4 fw-bold">{{ vault.name }}</div>
+            <div class="">by {{ vault.creator.name }}</div>
           </div>
           <div class="vault-delete" v-if="user.isAuthenticated && user.id == vault.creatorId">
             <button @click="deleteVault(vault)" class="btn btn-sm tc-white bg-danger">Delete</button>
@@ -20,8 +16,8 @@
     </div>
     <div class="row mt-4">
       <div class="col-12 d-flex flex-column align-items-center">
-        <div class="text-muted">
-          {{ vault.keeps.length }} Keeps
+        <div class="bc-light-purple rounded">
+          <div class="text-muted px-2">{{ vault.keeps.length }} Keeps</div>
         </div>
       </div>
     </div>
@@ -61,6 +57,8 @@ export default {
 
     async function deleteVault(vault) {
       try {
+        const confirmed = await Pop.confirm()
+        if(!confirmed) { return }
         await vaultsService.remove(vault.id)
         Pop.success(`'${vault.name}' deleted successfully`)
         router.push({name: 'Profile', params: {profileId: vault.creatorId}})
@@ -84,9 +82,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+img {
+  border-radius: 8px;
+}
+
 .vault-img {
   position: relative;
-  border-radius: 8px;
 }
 
 .vault-content {
@@ -96,6 +97,8 @@ export default {
 
 .vault-delete {
   position: absolute;
+  width: 65%;
+  right: 8px;
   top: 8px;
 }
 </style>

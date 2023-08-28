@@ -9,18 +9,18 @@
         <div class="modal-body">
           <div class="mb-2">
             <!-- <label for="name" class="form-label">Name</label> -->
-            <input v-model="data.name" class="form-control"  type="text" minlength="2" maxlength="255" id="name" placeholder="Name..." required >
+            <input v-model="data.name" class="form-control bc-white"  type="text" minlength="2" maxlength="255" id="name" placeholder="Name..." required >
           </div>
           <div class="mb-2">
             <!-- <label for="img" class="form-label">Image URL</label> -->
-            <input v-model="data.img" class="form-control"  type="url" minlength="2" maxlength="2083" id="img" placeholder="Image URL..." required >
+            <input v-model="data.img" class="form-control bc-white"  type="url" minlength="2" maxlength="2083" id="img" placeholder="Image URL..." required >
           </div>
           <div class="mb-2">
             <!-- <label for="description" class="form-label">Description</label> -->
-            <textarea v-model="data.description" class="form-control"  type="text" minlength="2" maxlength="500" id="description" placeholder="Description..." rows="10" required></textarea>
+            <textarea v-model="data.description" class="form-control bc-white"  type="text" minlength="2" maxlength="500" id="description" placeholder="Description..." rows="10" required></textarea>
           </div>
           <div class="mt-3 d-flex justify-content-end">
-            <input id="isPrivate" v-model="data.isPrivate" type="checkbox" class="form-check-input me-2">
+            <input id="isPrivate" v-model="data.isPrivate" type="checkbox" class="form-check-input bc-white me-2">
             <label for="isPrivate" class="form-check-label">Make Vault Private?</label>
           </div>
         </div>

@@ -48,6 +48,8 @@ export default {
   setup(){
     async function removeVaultKeep(vault, keepId) {
       try {
+        const confirmed = await Pop.confirm()
+        if(!confirmed) { return }
         const keep = vault.keeps.find(k => k.id == keepId)
         await vaultKeepsService.remove(keep.vaultKeepId)
         // await keepsService.update(keep.id, {kept: --keep.kept})

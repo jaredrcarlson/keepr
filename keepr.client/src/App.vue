@@ -9,7 +9,8 @@
     <NewKeepModal />
     <NewVaultModal />
   </main>
-  <footer></footer>
+  <footer>
+  </footer>
 </template>
 
 <script>
@@ -101,11 +102,15 @@ header, body{
 }
 
 .creator-img{
-  height: 5vh;
-  width: 5vh;
+  height: 7vh;
+  width: 7vh;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
+
+  @media only screen and (max-width: 767px){
+    visibility: hidden;
+  }
 }
 
 

@@ -76,6 +76,8 @@ export default {
 
     async function deleteKeep(keep) {
       try {
+        const confirmed = await Pop.confirm()
+        if(!confirmed) { return }
         await keepsService.remove(keep.id)
         Pop.success(`'${keep.name}' deleted successfully`)
         close()

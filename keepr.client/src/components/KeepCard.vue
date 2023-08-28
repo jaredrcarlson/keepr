@@ -2,14 +2,8 @@
   <!-- <div class="keep-card elevation-4" :style="{ backgroundImage: `url(${keep.img})` }"> -->
   <div @click="openKeepModal(keep, modalId)" class="keep-card elevation-4 selectable m-2">
     <img class="keep-img img-fluid" :src="keep.img" :alt="keep.name" :title="keep.name"/>
-    <div class="keep-content">
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="tc-white txt-shadow px-3 fs-4">{{ keep.name }}</div>
-        <div>
-          <img class="creator-img m-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
-        </div>
-      </div>
-    </div>
+    <img class="creator-img m-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
+    <div class="keep-content tc-white txt-shadow px-3 fs-4">{{ keep.name }}</div>
   </div>
 </template>
 
@@ -54,6 +48,12 @@ export default {
 
 .keep-content {
   position: absolute;
-  bottom: 8px;
+  bottom: 10px;
+}
+
+.creator-img {
+  position: absolute;
+  bottom: 1px;
+  right: 10px;
 }
 </style>
