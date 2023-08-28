@@ -27,11 +27,11 @@ export default {
   setup(){
     return {
       openKeepModal(keep, modalId) {
-        keepsService.setKeep(keep)
+        keepsService.getById(keep.id)
         if(AppState.account.id) {
           accountService.getAccountVaults()
         }
-        keepsService.update(keep.id, {views: ++keep.views})
+        // keepsService.update(keep.id, {views: ++keep.views})
         Modal.getOrCreateInstance(`#${modalId}`).show()
       }
     }

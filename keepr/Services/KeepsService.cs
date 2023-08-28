@@ -24,6 +24,8 @@ public class KeepsService
   internal Keep GetById(int id)
   {
     Keep keep = _keepsRepository.GetById(id) ?? throw new Exception("Unable to retrieve requested resource.");
+    keep.Views++;
+    _keepsRepository.Update(keep);
     return keep;
   }
 
@@ -44,10 +46,7 @@ public class KeepsService
     Keep keep = GetById(data.Id);
     if(user == null || user.Id != keep.CreatorId)
     {
-      data.Name = null;
-      data.Description = null;
-      data.Img = null;
-      data.Kept = null;
+      throw new Exception("Action cannot be performed.");
     }
 
     keep.Name = data.Name ?? keep.Name;

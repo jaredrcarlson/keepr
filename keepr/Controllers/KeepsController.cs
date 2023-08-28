@@ -59,6 +59,7 @@ public class KeepsController : ControllerBase
   }
 
   [HttpPut("{id}")]
+  [Authorize]
   public async Task<ActionResult<Keep>> Update(int id, [FromBody] Keep data)
   {
     try
