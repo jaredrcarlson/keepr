@@ -5,7 +5,7 @@ import { api } from "./AxiosService.js";
 class KeepsService {
   async create(data) {
     const res = await api.post('api/keeps', data)
-    AppState.keeps.push(new Keep(res.data))
+    AppState.keeps = [...AppState.keeps, new Keep(res.data)]
   }
 
   async get() {
@@ -30,10 +30,12 @@ class KeepsService {
   async remove(id) {
     await api.delete(`api/keeps/${id}`)
     AppState.keep = null
-    const i = AppState.keeps.findIndex(keep => keep.id == id)
-    if (i != -1) {
-      AppState.keeps.splice(i, 1)
-    }
+    // const i = AppState.keeps.findIndex(keep => keep.id == id)
+    // if (i != -1) {
+    //   AppState.keeps.splice(i, 1)
+    // }
+    AppState.keeps = AppState.keeps.filter(keep => keep.id != id)
+    AppState.profileKeeps = AppState.profileKeeps.filter(keep => keep.id != id)
   }
 
   setKeep(keep) {

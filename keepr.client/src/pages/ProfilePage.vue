@@ -36,11 +36,12 @@
     <div v-if="keeps" class="row">
       <div class="col-12">
         <div class="fs-3 fw-bold mb-2">Keeps</div>
-        <div class="row">
+        <!-- <div class="row">
           <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
             <KeepCard :keep="keep" :modalId="'keepDetailsModal'" />
           </div>
-        </div>
+        </div> -->
+        <KeepMasonryWall :keepsSource="'profileKeeps'" />
       </div>
     </div>
         
@@ -56,7 +57,7 @@ import { profilesService } from '../services/ProfilesService.js';
 import { useRoute } from 'vue-router';
 
 export default {
-  components: { VaultCard, KeepCard },
+  components: { VaultCard },
   setup() {
     const route = useRoute()
 

@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="keep-card elevation-4" :style="{ backgroundImage: `url(${keep.img})` }"> -->
-  <div @click="openKeepModal(keep, modalId)" class="keep-card elevation-4 selectable">
+  <div @click="openKeepModal(keep, modalId)" class="keep-card elevation-4 selectable m-2">
     <img class="keep-img img-fluid" :src="keep.img" :alt="keep.name" :title="keep.name"/>
     <div class="keep-content">
       <div class="d-flex justify-content-between align-items-center">

@@ -26,8 +26,11 @@
       </div>
     </div>
     <div class="row mt-4 gx-3 mx-4">
-      <div v-for="keep in vault.keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
+      <!-- <div v-for="keep in vault.keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
         <KeepCard :keep="keep" :modalId="'vaultKeepDetailsModal'" />
+      </div> -->
+      <div class="col-12">
+        <KeepMasonryWall :keepsSource="'vault.keeps'" />
       </div>
     </div>
   </div>
@@ -43,7 +46,7 @@ import Pop from '../utils/Pop.js';
 import { logger } from '../utils/Logger.js';
 
 export default {
-  components: { KeepCard },
+  components: { },
   setup() {
     const route = useRoute()
     const router = useRouter()
