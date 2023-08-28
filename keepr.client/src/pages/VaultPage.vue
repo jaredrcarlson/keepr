@@ -12,10 +12,12 @@
               by {{ vault.creator.name }}
             </div>
           </div>
+          <div class="vault-delete" v-if="user.isAuthenticated && user.id == vault.creatorId">
+            <button @click="deleteVault(vault)" class="btn btn-sm tc-white bg-danger">Delete</button>
+          </div>
         </div>
       </div>
     </div>
-        
     <div class="row mt-4">
       <div class="col-12 d-flex flex-column align-items-center">
         <div class="text-muted">
@@ -23,18 +25,12 @@
         </div>
       </div>
     </div>
-
     <div class="row mt-4 gx-3 mx-4">
       <div v-for="keep in vault.keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
         <KeepCard :keep="keep" :modalId="'vaultKeepDetailsModal'" />
       </div>
     </div>
-
   </div>
-
-
-
-
 </template>
 
 <script>
@@ -44,6 +40,7 @@ import KeepCard from '../components/KeepCard.vue';
 import { vaultsService } from '../services/VaultsService.js';
 import { useRoute, useRouter } from 'vue-router';
 import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
   components: { KeepCard },
@@ -59,12 +56,26 @@ export default {
       }
     })
 
+    async function deleteVault(vault) {
+      try {
+        await vaultsService.remove(vault.id)
+        Pop.success(`'${vault.name}' deleted successfully`)
+        router.push({name: 'Profile', params: {profileId: vault.creatorId}})
+        close()
+      } catch (error) {
+        Pop.error(error.message)
+        logger.error(error)
+      }
+    }
+
     onUnmounted(() => {
       vaultsService.clear()
     })
 
     return {
-      vault: computed(() => AppState.vault)
+      user: computed(() => AppState.user),
+      vault: computed(() => AppState.vault),
+      deleteVault
     }
   }
 }
@@ -79,5 +90,10 @@ export default {
 .vault-content {
   position: absolute;
   bottom: 8px;
+}
+
+.vault-delete {
+  position: absolute;
+  top: 8px;
 }
 </style>
