@@ -88,6 +88,10 @@ $color5: #2D2D2D;
   background-color: $color5;
 }
 
+.txt-shadow {
+  text-shadow: 1px 1px 3px $color5;
+}
+
 :root{
   --main-height: calc(100vh - 32px - 64px);
 }

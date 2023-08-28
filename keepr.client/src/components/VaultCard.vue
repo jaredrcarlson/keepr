@@ -1,8 +1,8 @@
 <template>
     <div class="vault-card elevation-4">
-      <img class="img-fluid" :src="vault.img" :alt="vault.name"/>
+      <img class="vault-img img-fluid" :src="vault.img" :alt="vault.name"/>
       <div class="vault-content d-flex justify-content-between align-items-center">
-        <p class="tc-white m-0 p-2 fs-5">{{ vault.name }}</p>
+        <div class="tc-white txt-shadow m-0 p-2 fs-4">{{ vault.name }}</div>
         <div v-if="vault.isPrivate" class="tc-black bc-white lock d-flex align-items-center justify-content-center">
           <i class="mdi mdi-lock fs-5"></i>
         </div>
@@ -30,30 +30,16 @@ export default {
 <style lang="scss" scoped>
 .vault-card {
   position: relative;
-  border-radius: 5px;
+  border-radius: 8px;
+}
+
+.vault-img {
+  border-radius: 8px;
 }
 
 .vault-content {
   position: absolute;
   bottom: 8px;
-}
-
-.creator-img{
-  height: 5vh;
-  width: 5vh;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-}
-
-@media(min-width: 768px){
-  .creator-img{
-    height: 7vh;
-    width: 7vh;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-  }
 }
 
 .lock{

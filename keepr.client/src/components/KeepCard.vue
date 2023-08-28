@@ -4,8 +4,10 @@
     <img class="keep-img img-fluid" :src="keep.img" :alt="keep.name" :title="keep.name"/>
     <div class="keep-content">
       <div class="d-flex justify-content-between align-items-center">
-        <p class="tc-white m-0 p-2 fs-5">{{ keep.name }}</p>
-        <img class="creator-img m-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
+        <div class="tc-white txt-shadow px-3 fs-4">{{ keep.name }}</div>
+        <div>
+          <img class="creator-img m-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
+        </div>
       </div>
     </div>
   </div>

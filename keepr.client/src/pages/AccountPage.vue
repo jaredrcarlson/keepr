@@ -1,5 +1,5 @@
 <template>
-  <div class="container px-5">
+  <div class="container">
     <div v-if="account.id" class="row mt-3">
       <div class="col-12" align="center">
         <div class="cover-img d-flex flex-column align-items-center">
@@ -23,8 +23,8 @@
     <div v-if="vaults" class="row">
       <div class="col-12">
         <div class="fs-3 fw-bold mb-2">Vaults</div>
-        <div class="row">
-          <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-3 mb-3">
+        <div class="row mx-1">
+          <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-3 mb-3 px-2">
             <router-link :to="{name: 'Vault', params: {vaultId: vault.id}}">
               <VaultCard :vault="vault" />
             </router-link>
@@ -36,11 +36,12 @@
     <div v-if="keeps" class="row">
       <div class="col-12">
         <div class="fs-3 fw-bold mb-2">Keeps</div>
-        <div class="row">
+        <!-- <div class="row">
           <div v-for="keep in keeps" :key="keep.id" class="col-6 col-md-3 mb-3">
             <KeepCard :keep="keep" :modalId="'keepDetailsModal'" />
           </div>
-        </div>
+        </div> -->
+        <KeepMasonryWall :keepsSource="'profileKeeps'" />
       </div>
     </div>
         
@@ -55,7 +56,7 @@ import KeepCard from '../components/KeepCard.vue';
 import { profilesService } from '../services/ProfilesService.js';
 
 export default {
-  components: { VaultCard, KeepCard },
+  components: { VaultCard },
   setup() {
     
     watchEffect(() => {
