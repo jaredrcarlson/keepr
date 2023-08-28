@@ -4,8 +4,8 @@
         <div v-if="keep" class="bc-pale modal-content container-fluid rounded">
             <div class="row bc-pale rounded">
               
-              <div class="col-12 col-md-6">
-                <img class="keep-img" :src="keep.img" :alt="keep.name" :title="keep.name">  
+              <div class="col-12 col-md-6 ps-0">
+                <img class="keep-img rounded-start" :src="keep.img" :alt="keep.name" :title="keep.name">  
               </div>
               
               <div class="col-12 col-md-6 py-3 d-flex flex-column justify-content-between">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <button v-if="user.isAuthenticated && user.id == vault.creatorId" @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm tc-white bc-dark-purple">Remove</button>
+                    <button v-if="user.isAuthenticated && user.id == vault?.creatorId" @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm tc-white bc-dark-purple">Remove</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <img class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">

@@ -4,8 +4,8 @@
         <div v-if="keep" class="bc-pale modal-content container-fluid rounded">
             <div class="row bc-pale rounded">
               
-              <div class="col-12 col-md-6">
-                <img class="keep-img" :src="keep.img" :alt="keep.name" :title="keep.name">  
+              <div class="col-12 col-md-6 px-0 rounded">
+                <img class="keep-img rounded-start" :src="keep.img" :alt="keep.name" :title="keep.name">  
               </div>
               
               <div class="col-12 col-md-6 py-3 d-flex flex-column justify-content-between">
@@ -26,10 +26,10 @@
                     </select>
                   </div>
                   <div v-if="selectedVault.name != 'selectVault'">
-                    <button @click="createVaultKeep(keep)" class="btn btn-sm tc-white bc-dark-purple">Save</button>
+                    <button @click="createVaultKeep(keep)" class="btn btn-sm tc-white bc-dark-purple me-1">Save</button>
                   </div>
                   <div v-if="user.isAuthenticated && user.id == keep.creatorId">
-                    <button @click="deleteKeep(keep)" class="btn btn-sm tc-white bg-danger">Delete</button>
+                    <button @click="deleteKeep(keep)" class="btn btn-sm tc-white bg-danger me-1">Delete</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <router-link :to="{name: 'Profile', params: {profileId: keep.creatorId}}">
