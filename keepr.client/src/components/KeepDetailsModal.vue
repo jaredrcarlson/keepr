@@ -20,13 +20,16 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <select v-model="selectedVault" class="bc-pale border-0 selectable me-2" aria-label="Create Keep or Vault" required>
+                    <select v-if="user.isAuthenticated" v-model="selectedVault" class="bc-pale border-0 selectable me-2" aria-label="Create Keep or Vault" required>
                       <option selected :value="{name: 'selectVault'}">-- Save To --</option>
                       <option v-for="vault in vaults" :key="vault.id" :value="vault">{{ vault.name }}</option>
                     </select>
                   </div>
                   <div v-if="selectedVault.name != 'selectVault'">
                     <button @click="createVaultKeep(keep)" class="btn btn-sm tc-white bc-dark-purple">Save</button>
+                  </div>
+                  <div v-if="user.isAuthenticated && user.id == keep.creatorId">
+                    <button @click="deleteKeep(keep)" class="btn btn-sm tc-white bg-danger">Delete</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <router-link :to="{name: 'Profile', params: {profileId: keep.creatorId}}">
@@ -67,7 +70,18 @@ export default {
         } else {
           Pop.error(error.message)
         }
-        logger.log(error)
+        logger.error(error)
+      }
+    }
+
+    async function deleteKeep(keep) {
+      try {
+        await keepsService.remove(keep.id)
+        Pop.success(`'${keep.name}' deleted successfully`)
+        close()
+      } catch (error) {
+        Pop.error(error.message)
+        logger.error(error)
       }
     }
 
@@ -77,9 +91,11 @@ export default {
 
     return {
       selectedVault,
+      user: computed(() => AppState.user),
       keep: computed(() => AppState.keep),
       vaults: computed(() => AppState.accountVaults),
       createVaultKeep,
+      deleteKeep,
       close
     }
   }

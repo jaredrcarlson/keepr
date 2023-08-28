@@ -11,7 +11,6 @@
   </div>
 </template>
 
-
 <script>
 import { Modal } from 'bootstrap';
 import { Keep } from '../models/Keep.js';
@@ -41,7 +40,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
 .keep-card {
   position: relative;
@@ -56,24 +54,4 @@ export default {
   position: absolute;
   bottom: 8px;
 }
-
-
-
-// .creator-img{
-//   height: 5vh;
-//   width: 5vh;
-//   border-radius: 50%;
-//   object-fit: cover;
-//   object-position: center;
-// }
-
-// @media(min-width: 768px){
-//   .creator-img{
-//     height: 7vh;
-//     width: 7vh;
-//     border-radius: 50%;
-//     object-fit: cover;
-//     object-position: center;
-//   }
-// }
 </style>

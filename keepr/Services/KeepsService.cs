@@ -44,7 +44,10 @@ public class KeepsService
     Keep keep = GetById(data.Id);
     if(user == null || user.Id != keep.CreatorId)
     {
-      throw new Exception("Action cannot be performed.");
+      data.Name = null;
+      data.Description = null;
+      data.Img = null;
+      data.Kept = null;
     }
 
     keep.Name = data.Name ?? keep.Name;
