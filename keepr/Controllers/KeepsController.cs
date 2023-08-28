@@ -49,7 +49,7 @@ public class KeepsController : ControllerBase
   {
     try
     {
-      Keep keep = _keepsService.GetById(id);
+      Keep keep = _keepsService.GetById(id, true);
       return Ok(keep);
     }
     catch (Exception e)

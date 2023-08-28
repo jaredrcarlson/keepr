@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <button @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm tc-white bc-dark-purple">Remove</button>
+                    <button v-if="user.isAuthenticated && user.id == vault.creatorId" @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm tc-white bc-dark-purple">Remove</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <img class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
@@ -50,7 +50,7 @@ export default {
       try {
         const keep = vault.keeps.find(k => k.id == keepId)
         await vaultKeepsService.remove(keep.vaultKeepId)
-        await keepsService.update(keep.id, {kept: --keep.kept})
+        // await keepsService.update(keep.id, {kept: --keep.kept})
         vaultsService.removeKeep(keep)
         Pop.success(`'${keep.name}' removed from '${vault.name}'`)
         close()   
@@ -65,6 +65,7 @@ export default {
     }
 
     return {
+      user: computed(() => AppState.user),
       keep: computed(() => AppState.keep),
       vault: computed(() => AppState.vault),
       removeVaultKeep,

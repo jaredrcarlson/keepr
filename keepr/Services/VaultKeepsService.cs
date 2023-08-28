@@ -44,7 +44,7 @@ public class VaultKeepsService
     {
       throw new Exception("Action cannot be performed.");
     }
-
     _vaultKeepsRepository.Remove(id);
+    _keepsService.DecrementKeptCount(vk.KeepId);
   }
 }

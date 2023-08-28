@@ -61,7 +61,7 @@ export default {
     async function createVaultKeep(keep) {
       try {
         await vaultKeepsService.create({vaultId: selectedVault.value.id, keepId: keep.id})
-        await keepsService.update(keep.id, {kept: ++keep.kept})
+        // await keepsService.update(keep.id, {kept: ++keep.kept})
         Pop.success(`'${keep.name}' kept in '${selectedVault.value.name}'`)
         close()
       } catch (error) {

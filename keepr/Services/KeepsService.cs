@@ -21,11 +21,12 @@ public class KeepsService
     return keeps;
   }
 
-  internal Keep GetById(int id)
+  internal Keep GetById(int id, bool viewed)
   {
     Keep keep = _keepsRepository.GetById(id) ?? throw new Exception("Unable to retrieve requested resource.");
-    keep.Views++;
-    _keepsRepository.Update(keep);
+    if(viewed) {
+      IncrementViewCount(keep);
+    }
     return keep;
   }
 
@@ -43,7 +44,7 @@ public class KeepsService
 
   internal Keep Update(Keep data, Account user)
   {
-    Keep keep = GetById(data.Id);
+    Keep keep = GetById(data.Id, false);
     if(user == null || user.Id != keep.CreatorId)
     {
       throw new Exception("Action cannot be performed.");
@@ -61,7 +62,7 @@ public class KeepsService
 
   internal void Remove(int id, Account user)
   {
-    Keep keep = GetById(id);
+    Keep keep = GetById(id, false);
     if(user == null || user.Id != keep.CreatorId)
     {
       throw new Exception("Action cannot be performed.");
@@ -70,4 +71,14 @@ public class KeepsService
     _keepsRepository.Remove(id);
   }
 
+  internal void IncrementViewCount(Keep keep) {
+    keep.Views++;
+    _keepsRepository.Update(keep);
+  }
+
+  internal void DecrementKeptCount(int id) {
+    Keep keep = GetById(id, false);
+    keep.Kept--;
+    _keepsRepository.Update(keep);
+  }
 }
