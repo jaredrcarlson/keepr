@@ -39,7 +39,8 @@ $color1: #FEF6F0;
 $color2: #E9D8D6;
 $color3: #DED6E9;
 $color4: #877A8F;
-$color5: #2D2D2D; 
+$color5: #2D2D2D;
+$clrRed: #ce1c1c;
 
 .tc-white{
   color: $color0;
@@ -89,8 +90,33 @@ $color5: #2D2D2D;
   background-color: $color5;
 }
 
+.save-btn {
+  background-color: $color4;
+  color: $color1;
+  
+  &:hover {
+    background-color: $color4;
+    color: $color5;
+  }
+}
+
+.delete-btn {
+  background-color: $clrRed;
+  color: $color1;
+  
+  &:hover {
+    background-color: $clrRed;
+    color: $color5;
+  }
+}
+
 .txt-shadow {
   text-shadow: 1px 1px 3px $color5;
+}
+
+.txt-info:hover {
+  cursor: default;
+  // text-shadow: 0px 0px 2px $color4;
 }
 
 :root{

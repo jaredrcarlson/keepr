@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { computed, onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, watchEffect, onUnmounted } from 'vue';
 import { AppState } from '../AppState';
 import VaultCard from '../components/VaultCard.vue';
 import KeepCard from '../components/KeepCard.vue';
@@ -61,10 +61,19 @@ export default {
   setup() {
     const route = useRoute()
 
-    onMounted(() => {
+    function init() {
       profilesService.getProfileById(route.params.profileId)
       profilesService.getVaultsByProfileId(route.params.profileId)
       profilesService.getKeepsByProfileId(route.params.profileId)
+    }
+
+    onMounted(() => {
+      init()
+    })
+
+    watchEffect(() => {
+      route
+      init()
     })
 
     onUnmounted(() => {

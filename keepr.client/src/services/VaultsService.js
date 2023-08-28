@@ -50,6 +50,12 @@ class VaultsService {
     AppState.vault.keeps = AppState.vault.keeps.filter(k => k.id != keep.id)
   }
 
+  // async toggleIsPrivate(vault) {
+  //   const data = { ...vault }
+  //   data.isPrivate = !data.isPrivate
+  //   await this.update(vault.id, data)
+  // }
+
   clear() {
     AppState.vault = null
   }

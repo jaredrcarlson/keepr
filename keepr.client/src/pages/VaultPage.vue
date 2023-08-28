@@ -8,13 +8,22 @@
             <div class="fs-4 fw-bold">{{ vault.name }}</div>
             <div class="">by {{ vault.creator.name }}</div>
           </div>
-          <div class="vault-delete" v-if="user.isAuthenticated && user.id == vault.creatorId">
-            <button @click="deleteVault(vault)" class="btn btn-sm tc-white bg-danger">Delete</button>
+          <div v-if="user.isAuthenticated && user.id == vault.creatorId" class="vault-action-buttons d-flex justify-content-start">
+            <!-- <div v-if="vault.isPrivate">
+              <button @click="toggleIsPrivate(vault)" class="btn btn-sm save-btn me-2" title="Make Public"><i class="mdi mdi-lock-open-variant-outline"></i></button>
+            </div>
+            <div v-else>
+              <button @click="toggleIsPrivate(vault)" class="btn btn-sm save-btn me-2" title="Make Private"><i class="mdi mdi-lock-outline"></i></button>
+            </div> -->
+            <div>
+              <button @click="deleteVault(vault)" class="btn btn-sm delete-btn" title="Delete Vault"><i class="mdi mdi-trash-can-outline"></i></button>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-    <div class="row mt-4">
+    <div v-if="vault.keeps" class="row mt-4">
       <div class="col-12 d-flex flex-column align-items-center">
         <div class="bc-light-purple rounded">
           <div class="text-muted px-2">{{ vault.keeps.length }} Keeps</div>
@@ -68,6 +77,17 @@ export default {
       }
     }
 
+    // async function toggleIsPrivate(vault) {
+    //   try {
+    //     await vaultsService.toggleIsPrivate(vault)
+    //     vault.isPrivate = !vault.isPrivate
+    //     Pop.success(`'${vault.name}' is now ${vault.isPrivate ? 'Private' : 'Public'}`)
+    //   } catch (error) {
+    //     Pop.error(error.message)
+    //     logger.error(error)
+    //   }
+    // }
+
     onUnmounted(() => {
       vaultsService.clear()
     })
@@ -75,6 +95,7 @@ export default {
     return {
       user: computed(() => AppState.user),
       vault: computed(() => AppState.vault),
+      // toggleIsPrivate,
       deleteVault
     }
   }
@@ -95,10 +116,10 @@ img {
   bottom: 8px;
 }
 
-.vault-delete {
+.vault-action-buttons {
   position: absolute;
-  width: 65%;
-  right: 8px;
+  width: 33%;
+  right: 2px;
   top: 8px;
 }
 </style>
