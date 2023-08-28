@@ -61,7 +61,6 @@ export default {
         await vaultsService.remove(vault.id)
         Pop.success(`'${vault.name}' deleted successfully`)
         router.push({name: 'Profile', params: {profileId: vault.creatorId}})
-        close()
       } catch (error) {
         Pop.error(error.message)
         logger.error(error)
