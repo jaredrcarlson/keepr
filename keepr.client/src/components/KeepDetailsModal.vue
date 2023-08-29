@@ -11,12 +11,12 @@
               <div class="col-12 col-md-6 py-3 d-flex flex-column justify-content-between">
                 
                 <div class="d-flex justify-content-center text-muted">
-                  <div class="txt-info d-flex align-items-center pe-4" title="Viewed">
+                  <div class="txt-info d-flex align-items-center pe-4" title="view count">
                     <i class="mdi mdi-eye-outline me-2 fs-4"></i>
                     <div class="fw-bold">{{ keep.views }}</div>
                   </div>
                   
-                  <div class="txt-info d-flex align-items-center" title="Kept">
+                  <div class="txt-info d-flex align-items-center" title="kept count">
                     <i class="mdi mdi-alpha-k-box-outline me-2 fs-4"></i>
                     <div class="fw-bold">{{ keep.kept }}</div>
                   </div>
@@ -29,21 +29,21 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
                     <select v-if="user.isAuthenticated" v-model="selectedVault" class="bc-pale border-0 selectable me-2" aria-label="Create Keep or Vault" required>
-                      <option selected :value="{name: 'selectVault'}">-- Save To --</option>
+                      <option selected :value="{name: 'selectVault'}">Select Vault</option>
                       <option v-for="vault in vaults" :key="vault.id" :value="vault">{{ vault.name }}</option>
                     </select>
                   </div>
                   <div v-if="selectedVault.name != 'selectVault'">
-                    <button @click="createVaultKeep(keep)" class="btn btn-sm save-btn me-1">Save</button>
+                    <button @click="createVaultKeep(keep)" class="btn btn-sm save-btn me-1" title="Save to vault">Save</button>
                   </div>
                   <div v-if="user.isAuthenticated && user.id == keep.creatorId">
-                    <button @click="deleteKeep(keep)" class="btn btn-sm delete-btn me-1">Delete</button>
+                    <button @click="deleteKeep(keep)" class="btn btn-sm delete-btn me-1" title="Delete keep">Delete</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <router-link :to="{name: 'Profile', params: {profileId: keep.creatorId}}">
                       <img @click="close()" class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
                     </router-link>
-                    <div class="pe-1">{{ keep.creator.name }}</div>
+                      <div class="pe-1">{{ keep.creator.name }}</div>
                   </div>
                 </div>
               </div>

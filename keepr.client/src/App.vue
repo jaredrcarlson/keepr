@@ -156,7 +156,8 @@ header, body{
   object-position: center;
 
   @media only screen and (max-width: 767px){
-    visibility: hidden;
+    height: 3vh;
+    width: 3vh;
   }
 }
 

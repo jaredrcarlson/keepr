@@ -11,12 +11,12 @@
               <div class="col-12 col-md-6 py-3 d-flex flex-column justify-content-between">
                 
                 <div class="d-flex justify-content-center text-muted">
-                  <div class="txt-info d-flex align-items-center pe-4" title="Viewed">
+                  <div class="txt-info d-flex align-items-center pe-4" title="view count">
                     <i class="mdi mdi-eye-outline me-2 fs-4"></i>
                     <div class="fw-bold">{{ keep.views }}</div>
                   </div>
                   
-                  <div class="txt-info d-flex align-items-center" title="Kept">
+                  <div class="txt-info d-flex align-items-center" title="kept count">
                     <i class="mdi mdi-alpha-k-box-outline me-2 fs-4"></i>
                     <div class="fw-bold">{{ keep.kept }}</div>
                   </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
                   <div>
-                    <button v-if="user.isAuthenticated && user.id == vault?.creatorId" @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm delete-btn">Remove</button>
+                    <button v-if="user.isAuthenticated && user.id == vault?.creatorId" @click="removeVaultKeep(vault, keep.id)" class="btn btn-sm delete-btn" title="Remove from vault">Remove</button>
                   </div>
                   <div class="d-flex align-items-center">
                     <img class="creator-img me-2" :src="keep.creator.picture" :alt="keep.creator.name" :title="keep.creator.name">
