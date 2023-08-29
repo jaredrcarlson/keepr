@@ -1,8 +1,10 @@
 <template>
   <span class="navbar-text">
-    <button class="btn selectable text-uppercase my-2 my-lg-0" @click="login"
+    <button class="btn text-uppercase my-2 my-lg-0" @click="login"
       v-if="!user.isAuthenticated">
-      Login
+      <div class="tc-white bc-black rounded selectable">
+        <div class="px-3 py-1">Login</div>
+      </div>
     </button>
     <div v-else>
       <div class="dropdown my-2 my-lg-0">

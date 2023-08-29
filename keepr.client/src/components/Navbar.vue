@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="keepr-logo ps-3 order-md-2 order-1">
+      <div class="keepr-logo ms-3 ms-md-0 me-md-5 order-md-2 order-1">
         <router-link :to="{ name: 'Home' }" class="">
           <img alt="logo" src="../assets/img/keeper-logo.png" height="45" />
         </router-link>
