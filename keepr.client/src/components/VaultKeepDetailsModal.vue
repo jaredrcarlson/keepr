@@ -1,6 +1,6 @@
 <template>
   <div id="vaultKeepDetailsModal" class="modal fade" tabindex="-1" aria-labelledby="vaultKeepDetailsModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div v-if="keep" class="bc-pale modal-content container-fluid rounded">
             <div class="row bc-pale rounded">
               

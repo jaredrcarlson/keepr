@@ -5,6 +5,6 @@ export class Profile extends Base {
     super(data);
     this.name = data.name;
     this.picture = data.picture;
-    this.coverImg = data.coverImg;
+    this.coverImg = data.coverImg ? data.coverImg : `https://placehold.co/800x400?text=${this.name}`;
   }
 }

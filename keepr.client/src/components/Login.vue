@@ -13,14 +13,24 @@
         </div>
         <div class="dropdown-menu dropdown-menu-lg-end dropdown-menu-start p-0" aria-labelledby="authDropdown">
           <div class="list-group">
+            <router-link :to="{name: 'Profile', params: {profileId: user.id}}">
+              <div class="new-btn dropdown-item list-group-item-action selectable">
+                <i class="mdi mdi-account-circle-outline me-1"></i>Profile
+              </div>
+            </router-link>
+            <router-link :to="{name: 'Account'}">
+              <div class="new-btn dropdown-item list-group-item-action selectable">
+                <i class="mdi mdi-account-outline me-1"></i>Account
+              </div>
+            </router-link>
             <router-link :to="{ name: 'Account Update' }">
               <div class="new-btn dropdown-item list-group-item-action selectable">
-                edit account
+                <i class="mdi mdi-account-edit-outline me-1"></i>Edit
               </div>
             </router-link>
             <div class="new-btn dropdown-item list-group-item-action selectable" @click="logout">
               <i class="mdi mdi-logout"></i>
-              logout
+              Logout
             </div>
           </div>
 
@@ -53,8 +63,8 @@ export default {
 
 <style lang="scss" scoped>
 .account-img{
-  height: 7vh;
-  width: 7vh;
+  height: 5vh;
+  width: 5vh;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;

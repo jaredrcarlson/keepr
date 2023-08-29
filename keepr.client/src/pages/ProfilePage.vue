@@ -3,7 +3,7 @@
     <div v-if="profile" class="row mt-3">
       <div class="col-12" align="center">
         <div class="cover-img d-flex flex-column align-items-center">
-          <img class="img-fluid" :src="profile.coverImg" :alt="profile.name" :title="profile.name"/>
+          <img class="cover-img img-fluid" :src="profile.coverImg" :alt="profile.name" :title="profile.name"/>
           <img class="profile-img" :src="profile.picture" :alt="profile.name" :title="profile.name">
         </div>
       </div>
@@ -77,7 +77,7 @@ export default {
     })
 
     onUnmounted(() => {
-      profilesService.clear()
+      // profilesService.clear()
     })
 
     return {

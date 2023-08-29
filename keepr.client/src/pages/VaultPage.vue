@@ -104,6 +104,7 @@ export default {
 
 <style scoped lang="scss">
 img {
+  max-height: 50vh;
   border-radius: 8px;
 }
 

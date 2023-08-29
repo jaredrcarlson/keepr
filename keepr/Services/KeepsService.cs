@@ -53,8 +53,8 @@ public class KeepsService
     keep.Name = data.Name ?? keep.Name;
     keep.Description = data.Description ?? keep.Description;
     keep.Img = data.Img ?? keep.Img;
-    keep.Views = data.Views ?? keep.Views;
-    keep.Kept = data.Kept ?? keep.Kept;
+    // keep.Views = data.Views ?? keep.Views;
+    // keep.Kept = data.Kept ?? keep.Kept;
     
     keep = _keepsRepository.Update(keep);
     return keep;

@@ -51,8 +51,9 @@ export default {
         Pop.error(error.message)
       }
     }
-
+    
     function close() {
+      data.value = {}
       Modal.getOrCreateInstance('#newKeepModal').hide()
     }
 

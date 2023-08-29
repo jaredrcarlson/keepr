@@ -8,7 +8,9 @@ class VaultsService {
     const res = await api.post('api/vaults', data)
     const vault = new Vault(res.data)
     AppState.vaults.push(vault)
-    AppState.profileVaults.push(vault)
+    if (AppState.profile && AppState.profile.id == vault.creatorId) {
+      AppState.profileVaults.push(vault)
+    }
   }
 
   async getById(id) {

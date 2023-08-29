@@ -7,7 +7,9 @@ class KeepsService {
     const res = await api.post('api/keeps', data)
     const keep = new Keep(res.data)
     AppState.keeps = [...AppState.keeps, keep]
-    AppState.profileKeeps = [...AppState.profileKeeps, keep]
+    if (AppState.profile && AppState.profile.id == keep.creatorId) {
+      AppState.profileKeeps = [...AppState.profileKeeps, keep]
+    }
   }
 
   async get() {

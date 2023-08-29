@@ -54,17 +54,26 @@ import { AppState } from '../AppState';
 import VaultCard from '../components/VaultCard.vue';
 import KeepCard from '../components/KeepCard.vue';
 import { profilesService } from '../services/ProfilesService.js';
+import { useRoute } from 'vue-router';
+import { onBeforeMount } from 'vue';
 
 export default {
   components: { VaultCard },
   setup() {
-    
-    watchEffect(() => {
-      const account = AppState.account
+
+    function init(account) {
       if(account.id) {
         profilesService.getVaultsByProfileId(account.id)
         profilesService.getKeepsByProfileId(account.id)
       }
+    }
+
+    onBeforeMount(() => {
+      init(AppState.account)
+    })
+
+    watchEffect(() => {
+      init(AppState.account)
     })
 
     return {

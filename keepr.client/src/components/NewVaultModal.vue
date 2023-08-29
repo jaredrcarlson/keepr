@@ -57,6 +57,7 @@ export default {
     }
 
     function close() {
+      data.value = {}
       Modal.getOrCreateInstance('#newVaultModal').hide()
     }
 
