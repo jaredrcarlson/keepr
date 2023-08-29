@@ -6,8 +6,7 @@
         <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
       </div>
     </router-link> -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     
@@ -30,7 +29,7 @@
               <!-- <div type="button" class="border-0 selectable no-select" data-bs-toggle="dropdown" aria-expanded="false">
                 Create
               </div> -->
-              <div class="create-btn border-0" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="create-btn border-0" data-bs-toggle="dropdown">
                 <div class="ms-1 mt-2 pt-1">Create<i class="mdi mdi-menu-down"></i></div>
               </div>
               <div class="dropdown-menu dropdown-menu-start p-0" aria-labelledby="authDropdown">
