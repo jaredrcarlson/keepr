@@ -32,7 +32,7 @@
               <div class="create-btn border-0" data-bs-toggle="dropdown">
                 <div class="ms-1 mt-2 pt-1">Create<i class="mdi mdi-menu-down"></i></div>
               </div>
-              <div class="dropdown-menu dropdown-menu-start p-0" aria-labelledby="authDropdown">
+              <div class="dropdown-menu dropdown-menu-start p-0">
                 <div class="list-group">
                   <div @click="openModal('newKeepModal')" class="new-btn dropdown-item list-group-item-action selectable">
                     new keep

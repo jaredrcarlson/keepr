@@ -13,15 +13,15 @@
         <div class="fs-3 fw-bold my-2">Update Account Details</div>
         <div class="mb-3">
           <label class="ms-1" for="name">Name</label>
-          <input v-model="data.name" type="text" id="name" name="name" title="Name" class="form-control" minlength="1" maxlength="255">
+          <input v-model="data.name" type="text" id="accountname" name="accountname" title="Account Name" class="form-control" minlength="1" maxlength="255" aria-label="User Name">
         </div>
         <div class="mb-3">
           <label class="ms-1" for="coverImg">Cover Image</label>
-          <input v-model="data.coverImg" type="url" id="coverImg" name="coverImg" title="Cover Image" class="form-control" minlength="1" maxlength="2083">
+          <input v-model="data.coverImg" type="url" id="coverImg" name="coverImg" title="Cover Image" class="form-control" minlength="1" maxlength="2083" aria-label="Cover Image">
         </div>
         <div class="mb-3">
           <label class="ms-1" for="picture">Profile Picture</label>
-          <input v-model="data.picture" type="url" id="picture" name="picture" title="Profile Picture" class="form-control" minlength="1" maxlength="2083">
+          <input v-model="data.picture" type="url" id="picture" name="picture" title="Profile Picture" class="form-control" minlength="1" maxlength="2083" aria-label="Profile Picture">
         </div>
         <div class="d-flex justify-content-end">
           <button v-if="dataChanged()"  @click="resetData()" class="btn tc-white bc-black me-2">Revert Changes</button>
