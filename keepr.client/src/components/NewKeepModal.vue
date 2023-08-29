@@ -7,21 +7,23 @@
           <button @click="close()" type="button" class="btn-close" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-2">
-            <!-- <label for="name" class="form-label">Name</label> -->
-            <input v-model="data.name" class="bc-white form-control"  type="text" minlength="2" maxlength="255" id="name" placeholder="Name..." required >
-          </div>
-          <div class="mb-2">
-            <!-- <label for="img" class="form-label">Image URL</label> -->
-            <input v-model="data.img" class="bc-white form-control"  type="url" minlength="2" maxlength="2083" id="img" placeholder="Image URL..." required >
-          </div>
-          <div class="mb-2">
-            <!-- <label for="description" class="form-label">Description</label> -->
-            <textarea v-model="data.description" class="bc-white form-control"  type="text" minlength="2" maxlength="500" id="description" placeholder="Description..." rows="4" required></textarea>
-          </div>
-        </div>
-        <div class="modal-footer border-0">
-          <button @click.prevent="create()" type="button" class="btn tc-white bc-black">Create</button>
+          <form @submit.prevent="create()" class="form-control border-0 bc-white">
+            <div class="mb-2">
+              <!-- <label for="name" class="form-label">Name</label> -->
+              <input v-model="data.name" class="bc-white form-control"  type="text" minlength="2" maxlength="255" id="name" placeholder="Name..." required >
+            </div>
+            <div class="mb-2">
+              <!-- <label for="img" class="form-label">Image URL</label> -->
+              <input v-model="data.img" class="bc-white form-control"  type="url" minlength="2" maxlength="2083" id="img" placeholder="Image URL..." required >
+            </div>
+            <div class="mb-2">
+              <!-- <label for="description" class="form-label">Description</label> -->
+              <textarea v-model="data.description" class="bc-white form-control"  type="text" minlength="2" maxlength="500" id="description" placeholder="Description..." rows="4" required></textarea>
+            </div>
+            <div class="mb-2 d-flex justify-content-end">
+              <button type="submit" class="btn tc-white bc-black">Create</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
