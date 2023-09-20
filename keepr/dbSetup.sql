@@ -1,4 +1,9 @@
 
+CREATE DATABASE keepr
+  DEFAULT CHARACTER SET = 'utf8mb4';
+
+USE keepr;
+
 DROP TABLE IF EXISTS accounts;
 CREATE TABLE IF NOT EXISTS accounts(
   id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
