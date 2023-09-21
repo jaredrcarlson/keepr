@@ -13,7 +13,9 @@ export default defineConfig({
     port: 8081,
     strictPort: true,
     hmr: {
-      clientPort: 8081
+      host: 'jaredcarlson.dev',
+      port: 8082,
+      protocol: 'wss'
     }
   },
   base: '/keepr/'
