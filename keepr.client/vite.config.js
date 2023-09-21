@@ -12,9 +12,7 @@ export default defineConfig({
     host: true,
     port: 8081,
     strictPort: true,
-    hmr: {
-      port: 8443
-    }
+    hmr: false
   },
   base: '/keepr/'
 })
