@@ -9,7 +9,10 @@ export default defineConfig({
     sourcemap: false
   },
   server: {
-    port: 8081
+    port: 8081,
+    hmr: {
+      host: 'localhost'
+    }
   },
   base: '/keepr/'
 })
