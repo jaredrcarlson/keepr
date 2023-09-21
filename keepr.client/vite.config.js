@@ -1,5 +1,6 @@
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
+import { servePath, servePort } from './src/env.js'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,9 +10,9 @@ export default defineConfig({
   },
   server: {
     host: true,
-    port: 8081,
+    port: servePort,
     strictPort: true,
     hmr: false
   },
-  base: '/keepr/'
+  base: servePath
 })
