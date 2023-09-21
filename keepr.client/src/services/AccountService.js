@@ -8,7 +8,7 @@ import { api } from './AxiosService'
 class AccountService {
   async getAccount() {
     try {
-      const res = await api.get('api/account')
+      const res = await api.get('account')
       AppState.account = new Account(res.data)
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
@@ -16,13 +16,13 @@ class AccountService {
   }
 
   async getAccountVaults() {
-    const res = await api.get('api/account/vaults')
+    const res = await api.get('account/vaults')
     AppState.accountVaults = res.data.map(data => new Vault(data))
   }
 
   async updateAccount(data) {
     try {
-      const res = await api.put('api/account', data)
+      const res = await api.put('account', data)
       AppState.account = new Account(res.data)
     } catch (error) {
       logger.error(error)
