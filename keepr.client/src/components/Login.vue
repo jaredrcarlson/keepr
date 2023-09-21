@@ -56,7 +56,7 @@ export default {
         AuthService.loginWithPopup()
       },
       async logout() {
-        AuthService.logout({ returnTo: window.location.origin })
+        AuthService.logout({ returnTo: window.location.origin + '/keepr' })
       }
     }
   }
