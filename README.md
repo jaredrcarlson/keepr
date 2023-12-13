@@ -1,11 +1,11 @@
 <!-- PROJECT LOGO -->
-<br />
 <div align="center">
   <a href="https://github.com/jaredrcarlson/keepr" target="_blank">
     <img src="images/keepr_logo.png" alt="Logo">
   </a>
 
-  <br>
+  <br />
+  <br />
   <p align="left">
     Keepr provides a social networking platform for sharing and discovering interests through captivating images and videos called Keeps. Users can organize them in personal Vaults with the choice of keeping them private or public.
   </p>
@@ -13,21 +13,22 @@
     <a href="https://www.jaredcarlson.dev/keepr" target="_blank">Live Demo</a>
   </p>
 </div>
+<br />
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About
+<!-- ## About -->
 
 <!-- [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url] -->
-[![MIT License][license-shield]][license-url]
+<!-- [![MIT License][license-shield]][license-url] -->
 
 [![Product Name Screen Shot][product-screenshot]](https://www.jaredcarlson.dev/keepr)
 
 
-### Tech 
+## Stack 
 
 [![Vue][Vue.js]][Vue-url] [![HTML5][HTML5]][HTML5-url] [![CSS3][CSS3]][CSS3-url] [![Bootstrap][Bootstrap]][Bootstrap-url] [![JavaScript][JavaScript]][JavaScript-url] [![ASP.NET][ASP.NET]][ASP.NET-url] [![MySQL][MySQL]][MySQL-url]
 
