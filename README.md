@@ -5,8 +5,7 @@
     <img src="images/keepr_logo.png" alt="Logo">
   </a>
 
-<h3 align="center">Keepr</h3>
-
+  <br>
   <p align="left">
     Keepr provides a social networking platform for sharing and discovering interests through captivating images and videos called Keeps. Users can organize them in personal Vaults with the choice of keeping them private or public.
   </p>
