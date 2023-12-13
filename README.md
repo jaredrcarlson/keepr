@@ -83,7 +83,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [Express-url]: https://expressjs.com/
 [MongoDB]: https://img.shields.io/badge/MongoDB-252526?style=for-the-badge&logo=mongodb
 [MongoDB-url]: https://www.mongodb.com/
-[Mongoose]: https://img.shields.io/badge/Mongoose-252526?style=for-the-badge&logo=mongoose
+[Mongoose]: https://img.shields.io/badge/Mongoose-252526?style=for-the-badge&logo=mongoose&logoColor=880000
 [Mongoose-url]: https://mongoosejs.com/
 [ASP.NET]: https://img.shields.io/badge/.NET-252526?style=for-the-badge&logo=dotnet
 [ASP.NET-url]: https://dotnet.microsoft.com/en-us/apps/aspnet
