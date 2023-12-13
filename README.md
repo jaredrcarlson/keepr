@@ -25,7 +25,7 @@
 [![Stargazers][stars-shield]][stars-url] -->
 [![MIT License][license-shield]][license-url]
 
-[![Product Name Screen Shot][product-screenshot]](https://github.com/jaredrcarlson/keepr)
+[![Product Name Screen Shot][product-screenshot]](https://www.jaredcarlson.dev/keepr)
 
 
 ### Tech 
@@ -42,7 +42,6 @@ Portfolio: <a href="https://www.jaredcarlson.dev" target="_blank">www.jaredcarls
 LinkedIn: <a href="https://linkedin.com/in/jaredrcarlson" target="_blank">jaredrcarlson</a>  
 Email: <a href="mailto:jared@jaredcarlson.dev">jared@jaredcarlson.dev</a>  
 
-Keepr Demo Link: [https://jaredcarlson.dev/keepr](https://jaredcarlson.dev/keepr)
 
 
 <!-- LICENSE -->
